@@ -93,13 +93,18 @@ if (isXFrame) {
 onMounted(() => {
   if (!isXFrame) return
   document.querySelector('[data-testid="nc-form-signin__submit"]')?.click()
+  const el = document.querySelector('#nc-form-signin-wrapper')
+  if (el) el.style.display = 'none'
+
 })
 
 </script>
 
 <template>
-  <div>
-    <NuxtLayout v-if="!isXFrame">
+  <div id="nc-form-signin-wrapper" >
+    
+    
+    <NuxtLayout >
       <div
         data-testid="nc-form-signin"
         class="md:bg-primary bg-opacity-5 signin h-full min-h-[600px] flex flex-col justify-center items-center nc-form-signin"
