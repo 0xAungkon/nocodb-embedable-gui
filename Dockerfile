@@ -17,4 +17,4 @@ EXPOSE 3000
 RUN pnpm --filter=nc-gui run build 
 
 
-CMD [ "pnpm", "--filter=nc-gui", "run", "start" ]
+CMD [ "pnpm", "--filter=nc-gui", "run", "start", "--", "--hostname", "0.0.0.0" ]
