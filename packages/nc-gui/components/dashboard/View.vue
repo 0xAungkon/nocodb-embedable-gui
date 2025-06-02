@@ -222,6 +222,7 @@ function onResize(widthPercent: any) {
         'w-screen flex-none': !isNewSidebarEnabled,
       }"
     >
+      <div v-if="!showTopbar" style="width:100%;height:30px;"></div>
       <DashboardTopbar v-if="showTopbar" :workspace-id="workspaceId" />
       <Splitpanes
         class="nc-sidebar-content-resizable-wrapper h-full"

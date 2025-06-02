@@ -1,3 +1,5 @@
+
+
 <script lang="ts" setup>
 provide(IsMiniSidebarInj, ref(true))
 
@@ -88,10 +90,20 @@ useEventListener(document, 'keydown', async (e: KeyboardEvent) => {
     }
   }
 })
+
+
+const isMiniSidebarEnabled = true
+
+
+if (window.self !== window.top) {
+    isMiniSidebarEnabled.value = false
+  }
 </script>
 
 <template>
-  <div class="nc-mini-sidebar" data-testid="nc-mini-sidebar">
+  <div v-if="!isMiniSidebarEnabled" style="width:30px;height:100%;">
+  </div>
+  <div class="nc-mini-sidebar" v-if="isMiniSidebarEnabled" data-testid="nc-mini-sidebar">
     <div class="flex flex-col items-center">
       <DashboardMiniSidebarItemWrapper size="small">
         <div
