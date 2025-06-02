@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 const router = useRouter()
 const route = router.currentRoute
+const disableTopbar = false
+
 
 const { isNewSidebarEnabled } = storeToRefs(useSidebarStore())
 
@@ -29,10 +31,14 @@ const topbarBreadcrumbItemWidth = computed(() => {
     return 'calc(\(100% - 12px\) / 2)'
   }
 })
+if (window.self !== window.top) {
+    disableTopbar.value = true
+  }
 </script>
 
 <template>
   <div
+    v-if="!disableTopbar"
     class="nc-table-topbar py-2 border-b-1 border-gray-200 flex gap-3 items-center justify-between overflow-hidden relative h-[var(--topbar-height)] max-h-[var(--topbar-height)] min-h-[var(--topbar-height)] md:(px-2) xs:(px-1)"
     style="z-index: 7"
   >
@@ -60,9 +66,9 @@ const topbarBreadcrumbItemWidth = computed(() => {
 
         <NcButton
           v-if="
-            (appInfo.isOnPrem || isFeatureEnabled(FEATURE_FLAG.EXTENSIONS)) &&
             !isSharedBase &&
             !activeAutomationId &&
+            isFeatureEnabled(FEATURE_FLAG.EXTENSIONS) &&
             openedViewsTab === 'view' &&
             !isMobileMode
           "

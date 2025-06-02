@@ -43,6 +43,11 @@ onMounted(() => {
   } else {
     document.title = 'NocoDB'
   }
+
+
+  if (window.self !== window.top) {
+    disableTopbar.value = true
+  }
 })
 </script>
 

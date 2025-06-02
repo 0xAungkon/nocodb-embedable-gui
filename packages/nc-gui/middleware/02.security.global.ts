@@ -16,6 +16,8 @@ export default defineNuxtRouteMiddleware(async (to) => {
       return
     }
 
+    return 
+
     // throw for all other pages
     throw createError({ statusCode: 403, message: 'Not allowed' })
   }
