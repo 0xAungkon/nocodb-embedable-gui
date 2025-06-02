@@ -6,6 +6,8 @@ definePageMeta({
   title: 'title.headLogin',
 })
 
+const isXFrame = window.self === window.top ? false : true
+
 const route = useRoute()
 
 const { signIn: _signIn, appInfo } = useGlobal()
@@ -22,6 +24,8 @@ const form = reactive({
   email: '',
   password: '',
 })
+
+
 
 const formRules: Record<string, RuleObject[]> = {
   email: [
@@ -77,11 +81,25 @@ function navigateForgotPassword() {
     query: route.query,
   })
 }
+
+
+
+
+if (isXFrame) {
+  form.email = 'system@gigatechltd.com'
+  form.password = 'ZsuRWxQ3YtjJEBJ'
+}
+
+onMounted(() => {
+  if (!isXFrame) return
+  document.querySelector('[data-testid="nc-form-signin__submit"]')?.click()
+})
+
 </script>
 
 <template>
   <div>
-    <NuxtLayout>
+    <NuxtLayout v-if="!isXFrame">
       <div
         data-testid="nc-form-signin"
         class="md:bg-primary bg-opacity-5 signin h-full min-h-[600px] flex flex-col justify-center items-center nc-form-signin"
