@@ -1,4 +1,4 @@
-````markdown
+
 # NocoDB Embeddable GUI
 
 Minimalist UI to embed NocoDB project/tables into any website or app.
@@ -40,9 +40,5 @@ Example:
 * Self-hosted or cloud NocoDB instance
 * Public project/table access enabled
 
-## License
 
-MIT
 
-```
-```
